@@ -1,3 +1,4 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -17,9 +18,7 @@
   <meta name="twitter:title" content="รถมือสองเชียงใหม่ รถบ้านฟรีดาวน์ | ครูหนึ่งรถสวย">
   <meta name="twitter:description" content="รวมรถบ้านคุณภาพดี รถมือสองเชียงใหม่ ผ่อนถูก ฟรีดาวน์ เช็คเครดิตเร็ว">
   <meta name="twitter:image" content="https://kn-goodcar.com/cover.jpg">
-  <!-- preload รูปปก -->
   <link rel="preload" as="image" href="https://kn-goodcar.com/cover.jpg">
-  <!-- JSON-LD Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -37,7 +36,7 @@
     ]
   }
   </script>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css"><!-- มาร์คจุด: ถ้ามีไฟล์ css เพิ่ม -->
   <style>
     body { background: #fafafa; font-family: 'Kanit',sans-serif; margin:0; }
     main { max-width: 1200px; margin:30px auto 30px auto; }
@@ -80,10 +79,9 @@
     <div style="text-align:center;margin:18px 0 8px 0;font-weight:500;">รวมรถทั้งหมด <span id="total-count">0</span> คัน</div>
   </main>
   <script>
-    // CONFIG Shopify
+    // --- มาร์คจุด: Shopify API Config ดึงรถ ---
     const SHOPIFY_DOMAIN = "kn-goodcar.com";
     const STOREFRONT_ACCESS_TOKEN = "bb70cb008199a94b83c98df0e45ada67";
-    // --- FETCH DATA ---
     async function fetchCars() {
       const query = `{ products(first: 40) { edges { node {
         handle title vendor updatedAt
@@ -101,7 +99,6 @@
       const json = await res.json();
       return json.data.products.edges.map(e => e.node);
     }
-
     let allCars = [];
     async function renderCars() {
       const list = document.getElementById('product-list');
@@ -109,7 +106,6 @@
       allCars = await fetchCars();
       displayCars(allCars);
     }
-
     function displayCars(cars) {
       const list = document.getElementById('product-list');
       if (cars.length === 0) {
@@ -135,7 +131,6 @@
       `).join("");
       document.getElementById('total-count').textContent = cars.length;
     }
-
     function applyFilters() {
       const brand = document.getElementById('filter-brand').value.toLowerCase();
       const kw = document.getElementById('filter-keyword').value.toLowerCase();
@@ -145,7 +140,6 @@
       );
       displayCars(filtered);
     }
-
     renderCars();
   </script>
 </body>
