@@ -1,95 +1,197 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
+  <!-- === SEO META HEADERS (Dynamic) === -->
   <meta charset="UTF-8">
-  <title>รถมือสองเชียงใหม่ TOYOTA FORTUNER 2.4V | ครูหนึ่งรถสวย รถบ้านฟรีดาวน์ ผ่อนถูก</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="TOYOTA FORTUNER 2.4V รถมือสองเชียงใหม่ รถบ้านคุณภาพดี ฟรีดาวน์ ผ่อนถูก ประวัติดี เช็กศูนย์ครบ รับประกัน 1 ปี บริการทั่วภาคเหนือ ครูหนึ่งรถสวย เต็นท์รถอันดับ 1 เชียงใหม่">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title id="seo-title"></title>
+  <meta name="description" id="seo-desc">
+  <meta name="keywords" id="seo-kw">
+  <link rel="canonical" id="seo-canonical">
   <meta name="robots" content="index, follow">
+  <!-- === OG META === -->
+  <meta property="og:title" id="og-title">
+  <meta property="og:description" id="og-desc">
+  <meta property="og:image" id="og-image">
+  <meta property="og:url" id="og-url">
+  <meta property="og:type" content="product">
+  <meta property="og:site_name" content="ครูหนึ่งรถสวย รถมือสองเชียงใหม่">
+  <!-- === Twitter META === -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" id="tw-title">
+  <meta name="twitter:description" id="tw-desc">
+  <meta name="twitter:image" id="tw-image">
+  <meta name="twitter:url" id="tw-url">
+  <!-- === Favicon === -->
+  <link rel="icon" href="https://www.kn-goodcar.com/favicon.ico">
+  <link rel="preload" as="image" href="https://www.kn-goodcar.com/cover.jpg">
+
+  <!-- === JSON-LD SCHEMA (Dynamic) === -->
+  <script type="application/ld+json" id="breadcrumb-json"></script>
+  <script type="application/ld+json" id="product-json"></script>
+  <script type="application/ld+json" id="dealer-json"></script>
+  <!-- === Bootstrap 5 CDN === -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    body { background: #f7f7f7; font-family: 'Kanit', sans-serif; }
-    .main-img { border-radius: 12px; box-shadow: 0 3px 18px #0001; object-fit: cover; background: #eee; }
-    .gallery-img { border-radius: 8px; border: 2px solid #eee; cursor: pointer; object-fit: cover; transition: border .18s; }
-    .gallery-img.active { border-color: #fd7e14; }
-    .status { font-size: 1.06em; font-weight: bold; }
-    .status.sold { color: #fff; background: #e1412e; padding: 2px 10px; border-radius: 8px;}
+    body { font-family: 'Kanit', Arial, sans-serif; background: #f7f8fa; }
+    .car-detail-card { background: #fff; border-radius: 18px; box-shadow: 0 4px 24px #d5e0ec1a; margin: 28px auto; max-width: 900px; padding: 0; }
+    .car-main-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 18px 18px 0 0; background: #eee; }
+    .car-thumbs { display: flex; gap: 8px; overflow-x: auto; padding: 12px 0 6px 0; background: #fafbfc; }
+    .car-thumbs img { width: 90px; height: 62px; object-fit: cover; border-radius: 8px; border: 2px solid #fff; box-shadow: 0 2px 6px #0001; cursor: pointer; transition: border 0.16s; }
+    .car-thumbs img.active { border: 2px solid #ea671a; }
+    .car-detail-content { padding: 28px 32px 22px 32px; }
+    .car-title { font-size: 2rem; font-weight: 700; color: #ea671a; margin-bottom: 7px; }
+    .car-price { color: #e1412e; font-size: 1.38em; font-weight: 600; }
+    .car-status { color: #fff; background: #06c755; font-size: 1.03em; padding: 4px 14px; border-radius: 9px; font-weight: 600; display: inline-block; margin-bottom: 8px;}
+    .car-status.sold { background: #d32f2f; }
+    .car-meta { color: #666; margin-bottom: 2px; font-size: 1.05em; }
+    .car-desc { color: #444; font-size: 1.11em; margin-bottom: 1em; }
+    .car-btns .btn { width: 100%; border-radius: 13px; font-size: 1.15em; margin-bottom: 10px; padding: 13px 0; font-weight: 700;}
+    .car-btns .btn-line { background: #06c755; color: #fff;}
+    .car-btns .btn-fb { background: #1877f2; color: #fff;}
+    .car-btns .btn-back { background: #ff9800; color: #fff;}
+    nav[aria-label=breadcrumb] {margin-bottom:12px;font-size:0.98em;}
+    @media (max-width:900px){ .car-detail-content{padding:14px 9px 10px 9px;} .car-title{font-size:1.19em;} }
   </style>
 </head>
 <body>
-  <div class="container py-3">
-    <div class="mb-3">
-      <a href="index.html" class="text-decoration-none">&larr; กลับหน้ารวมรถ</a>
-    </div>
-    <div class="row g-3">
-      <div class="col-12 col-md-6">
-        <img id="main-img" src="https://www.kn-goodcar.com/uploads/fortuner-cover.webp"
-          class="w-100 main-img mb-2" style="height:270px;" alt="TOYOTA FORTUNER 2.4V รถมือสองเชียงใหม่">
-        <div class="d-flex gap-2 mb-2 flex-nowrap overflow-auto" id="gallery">
-          <img src="https://www.kn-goodcar.com/uploads/fortuner-cover.webp" width="78" height="52"
-            class="gallery-img active" alt="ด้านหน้า" onclick="setMainImg(this)">
-          <img src="https://www.kn-goodcar.com/uploads/fortuner2.webp" width="78" height="52"
-            class="gallery-img" alt="ด้านข้าง" onclick="setMainImg(this)">
-          <img src="https://www.kn-goodcar.com/uploads/fortuner3.webp" width="78" height="52"
-            class="gallery-img" alt="ภายใน" onclick="setMainImg(this)">
-        </div>
-      </div>
-      <div class="col-12 col-md-6">
-        <h1 class="h4 fw-bold mb-2" id="car-title">TOYOTA FORTUNER 2.4V ฟรีดาวน์</h1>
-        <div class="fs-5 text-danger fw-bold mb-1" id="car-price">฿855,000</div>
-        <div class="status mb-2" id="car-status">ฟรีดาวน์</div>
-        <div class="mb-3" id="car-desc">
-          รถมือสองเชียงใหม่ รถบ้านเกรดเอ สภาพนางฟ้า ฟรีดาวน์ เช็กศูนย์ครบ ผ่อนถูก รับประกัน 1 ปี  
-          <br>บริการจัดไฟแนนซ์ ส่งรถทั่วภาคเหนือ ทุกอำเภอ เชียงใหม่ ลำพูน ลำปาง พะเยา แพร่ น่าน เชียงราย แม่ฮ่องสอน
-          <br>จองก่อนมีสิทธิ์ก่อน! พร้อมดูแลตลอดอายุการใช้งาน
-        </div>
-        <div class="d-flex gap-2 mb-2">
-          <a class="btn btn-success flex-fill" href="https://lin.ee/zXaTVvJ" target="_blank">สอบถามผ่าน LINE</a>
-          <a class="btn btn-primary flex-fill" href="https://www.facebook.com/KN2car/" target="_blank">ดูรถบน Facebook</a>
+  <main>
+    <div class="container">
+      <div class="car-detail-card shadow">
+        <img id="main-img" class="car-main-img" src="" alt="" loading="eager">
+        <div class="car-thumbs" id="car-thumbs"></div>
+        <div class="car-detail-content">
+          <div class="car-title" id="car-title"></div>
+          <div class="car-price" id="car-price"></div>
+          <span class="car-status" id="car-status"></span>
+          <div class="car-meta" id="car-meta"></div>
+          <div class="car-desc" id="car-desc"></div>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-2 mt-1">
+              <li class="breadcrumb-item"><a href="index.html">รถมือสองเชียงใหม่</a></li>
+              <li class="breadcrumb-item active" aria-current="page" id="breadcrumb-model"></li>
+            </ol>
+          </nav>
+          <div class="car-btns row mt-4">
+            <div class="col-12 col-sm-4 mb-2"><a class="btn btn-line" href="https://lin.ee/zXaTVvJ" target="_blank">สอบถามผ่าน LINE</a></div>
+            <div class="col-12 col-sm-4 mb-2"><a class="btn btn-fb" href="https://facebook.com/KN2car" target="_blank">ดูรถบน Facebook</a></div>
+            <div class="col-12 col-sm-4"><a class="btn btn-back" href="index.html">← กลับหน้ารวมรถ</a></div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- Bootstrap 5 -->
+  </main>
+  <!-- Bootstrap JS (Optional, for grid) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Firebase (สำหรับแสดงสถานะขายแล้ว/จองแล้ว) -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
   <script>
-    // ========== GALLERY เปลี่ยนรูป ==========
-    function setMainImg(img) {
-      document.getElementById('main-img').src = img.src;
-      document.querySelectorAll('.gallery-img').forEach(e=>e.classList.remove('active'));
-      img.classList.add('active');
+    // ==== CONFIG ====
+    const handle = new URLSearchParams(location.search).get("handle");
+    const SHOPIFY_DOMAIN = "kn-goodcar.com";
+    const STOREFRONT_ACCESS_TOKEN = "bb70cb008199a94b83c98df0e45ada67";
+    // ==== END CONFIG ====
+
+    // ====== ดึงข้อมูลจาก Shopify =====
+    async function fetchCarDetail(handle) {
+      const query = `{ productByHandle(handle: "${handle}") {
+        title description updatedAt
+        images(first:20){ edges{ node{ url altText } } }
+        variants(first:1){ edges{ node{ price{ amount } } } }
+      }}`;
+      const res = await fetch(`https://${SHOPIFY_DOMAIN}/api/2023-10/graphql.json`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Shopify-Storefront-Access-Token": STOREFRONT_ACCESS_TOKEN
+        },
+        body: JSON.stringify({ query })
+      });
+      const json = await res.json();
+      return json.data.productByHandle;
     }
-    // ========== สถานะขาย/จองจาก Firebase ==========
-    const firebaseConfig = {
-      apiKey: "AIzaSyCB-Tt_xgUy2JK33bd5E5J06SwA4y5UJ7o",
-      authDomain: "catalog-all-cars.firebaseapp.com",
-      databaseURL: "https://catalog-all-cars-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "catalog-all-cars",
-      storageBucket: "catalog-all-cars.appspot.com",
-      messagingSenderId: "674226321868",
-      appId: "1:674226321868:web:908550ccd79f41e8348569",
-      measurementId: "G-8RR4H4Z8Q5"
-    };
-    firebase.initializeApp(firebaseConfig);
-    // เอา handle จาก url query
-    function getHandle() {
-      const p = new URLSearchParams(window.location.search);
-      return p.get('handle') || 'fortuner-24v';
-    }
-    const handle = getHandle();
-    firebase.database().ref('extras/' + handle).once('value').then((snap) => {
-      const data = snap.val();
-      if (data) {
-        const statusDiv = document.getElementById('car-status');
-        if (data.status) {
-          statusDiv.innerHTML = data.status;
-          if (data.status.includes("ขายแล้ว") || data.sold) statusDiv.className = 'status sold mb-2';
+
+    // ========== แสดงผล (Dynamic ทุกฟิลด์/SEO/Schema/alt text) ==========
+    async function renderCarDetail() {
+      if (!handle) { document.body.innerHTML = "<div class='alert alert-danger m-4'>ไม่พบข้อมูลรถ กรุณากลับไปหน้ารวมรถ</div>"; return; }
+      const car = await fetchCarDetail(handle);
+      if (!car) { document.body.innerHTML = "<div class='alert alert-danger m-4'>ไม่พบข้อมูลรถ กรุณากลับไปหน้ารวมรถ</div>"; return; }
+      // ======= ข้อมูลหลัก ========
+      document.title = `${car.title} รถมือสองเชียงใหม่ | ครูหนึ่งรถสวย`;
+      document.getElementById('seo-title').textContent = `${car.title} รถมือสองเชียงใหม่ | ครูหนึ่งรถสวย`;
+      document.getElementById('seo-desc').setAttribute('content', `${car.description} รถบ้านเชียงใหม่ ฟรีดาวน์ ผ่อนถูก เกรดเอ บริการทั่วภาคเหนือ`);
+      document.getElementById('seo-kw').setAttribute('content', `รถมือสองเชียงใหม่, รถบ้านเชียงใหม่, ฟรีดาวน์, รถบ้านเจ้าของขายเอง, รถยนต์มือสอง, ครูหนึ่งรถสวย, ${car.title}`);
+      document.getElementById('seo-canonical').setAttribute('href', `https://${SHOPIFY_DOMAIN}/car-detail.html?handle=${handle}`);
+      // OG / Twitter
+      document.getElementById('og-title').setAttribute('content', `${car.title} | ครูหนึ่งรถสวย`);
+      document.getElementById('og-desc').setAttribute('content', car.description);
+      document.getElementById('og-image').setAttribute('content', car.images.edges[0]?.node.url || "");
+      document.getElementById('og-url').setAttribute('content', `https://${SHOPIFY_DOMAIN}/car-detail.html?handle=${handle}`);
+      document.getElementById('tw-title').setAttribute('content', `${car.title} | ครูหนึ่งรถสวย`);
+      document.getElementById('tw-desc').setAttribute('content', car.description);
+      document.getElementById('tw-image').setAttribute('content', car.images.edges[0]?.node.url || "");
+      document.getElementById('tw-url').setAttribute('content', `https://${SHOPIFY_DOMAIN}/car-detail.html?handle=${handle}`);
+      // รูปภาพ/alt text
+      const images = car.images.edges.map(e => ({url: e.node.url, alt: e.node.altText || car.title + " รถมือสองเชียงใหม่"}));
+      document.getElementById('main-img').src = images[0]?.url || '';
+      document.getElementById('main-img').alt = images[0]?.alt || car.title;
+      // แกลเลอรี่
+      const thumbs = document.getElementById('car-thumbs');
+      thumbs.innerHTML = images.map((img, i) => `<img src="${img.url}" alt="${img.alt}" class="${i==0?'active':''}" onclick="switchImg('${img.url}', this)">`).join('');
+      window.switchImg = (src, el) => {
+        document.getElementById('main-img').src = src;
+        [...thumbs.children].forEach(c => c.classList.remove('active'));
+        el.classList.add('active');
+      };
+      // รายละเอียดอื่นๆ
+      document.getElementById('car-title').textContent = car.title;
+      document.getElementById('car-price').textContent = "฿" + Number(car.variants.edges[0]?.node.price.amount || "0").toLocaleString();
+      document.getElementById('car-meta').textContent = "อัปเดตล่าสุด: " + new Date(car.updatedAt).toLocaleDateString('th-TH');
+      document.getElementById('car-desc').textContent = car.description;
+      document.getElementById('breadcrumb-model').textContent = car.title;
+      document.getElementById('car-status').textContent = "ฟรีดาวน์";
+      // ====== JSON-LD BREADCRUMB ======
+      document.getElementById('breadcrumb-json').textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type":"ListItem","position":1,"name":"รถมือสองเชียงใหม่","item":"https://kn-goodcar.com/index.html"},
+          {"@type":"ListItem","position":2,"name":car.title,"item":`https://${SHOPIFY_DOMAIN}/car-detail.html?handle=${handle}`}
+        ]
+      });
+      // ====== JSON-LD PRODUCT ======
+      document.getElementById('product-json').textContent = JSON.stringify({
+        "@context":"https://schema.org",
+        "@type":"Product",
+        "name": car.title,
+        "image": images.map(img=>img.url),
+        "description": car.description,
+        "brand": {"@type":"Brand","name":car.title.split(' ')[0]},
+        "offers": {
+          "@type":"Offer",
+          "priceCurrency":"THB",
+          "price": car.variants.edges[0]?.node.price.amount || "0",
+          "availability": "https://schema.org/InStock",
+          "url": `https://${SHOPIFY_DOMAIN}/car-detail.html?handle=${handle}`,
+          "seller": {"@type":"Organization","name":"ครูหนึ่งรถสวย"}
         }
-      }
-    });
+      });
+      // ====== JSON-LD DEALER ======
+      document.getElementById('dealer-json').textContent = JSON.stringify({
+        "@context":"https://schema.org",
+        "@type":"AutoDealer",
+        "name":"ครูหนึ่งรถสวย",
+        "image":"https://kn-goodcar.com/cover.jpg",
+        "url":"https://kn-goodcar.com/",
+        "address":{"@type":"PostalAddress","addressRegion":"เชียงใหม่","addressCountry":"TH"},
+        "telephone":"+66940649018",
+        "sameAs":[
+          "https://www.facebook.com/KN2car",
+          "https://lin.ee/zXaTVvJ",
+          "https://www.tiktok.com/@krunueng_usedcar",
+          "https://youtube.com/@chiangraiusedcar"
+        ]
+      });
+    }
+    renderCarDetail();
   </script>
 </body>
 </html>
