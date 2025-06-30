@@ -1,3 +1,4 @@
+<!-- car-detail.html -->
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -8,14 +9,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://www.kn-goodcar.com/car-detail.html?handle=fortuner-24v">
-  <!-- Open Graph -->
   <meta property="og:title" content="รถมือสองเชียงใหม่ TOYOTA FORTUNER 2.4V | ครูหนึ่งรถสวย">
   <meta property="og:description" content="รถมือสองเชียงใหม่ TOYOTA FORTUNER 2.4V ฟรีดาวน์ ผ่อนถูก เช็กศูนย์ครบ ประวัติดี รับประกัน 1 ปี ครูหนึ่งรถสวย บริการทั่วเชียงใหม่และภาคเหนือ">
   <meta property="og:image" content="https://www.kn-goodcar.com/uploads/fortuner-cover.webp">
   <meta property="og:url" content="https://www.kn-goodcar.com/car-detail.html?handle=fortuner-24v">
   <meta property="og:type" content="product">
   <meta property="og:site_name" content="ครูหนึ่งรถสวย รถมือสองเชียงใหม่">
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="รถมือสองเชียงใหม่ TOYOTA FORTUNER 2.4V | ครูหนึ่งรถสวย">
   <meta name="twitter:description" content="รถมือสองเชียงใหม่ รถบ้านเกรดเอ ฟรีดาวน์ เช็กศูนย์ครบ รับประกัน 1 ปี">
@@ -85,14 +84,14 @@
 <body>
   <div class="container">
     <img src="https://www.kn-goodcar.com/logo-kn-goodcar.png" class="logo" alt="ครูหนึ่งรถสวย รถมือสองเชียงใหม่ โลโก้ เต็นท์รถมือสองภาคเหนือ" loading="lazy">
-    <h1 class="title" id="car-title">TOYOTA FORTUNER 2.4V รถมือสองเชียงใหม่ ฟรีดาวน์</h1>
+    <h1 class="title" id="car-title">TOYOTA FORTUNER2.4V รถมือสองเชียงใหม่ ฟรีดาวน์</h1>
     <img id="main-img" class="main-img" src="https://www.kn-goodcar.com/uploads/fortuner-cover.webp"
       alt="รถมือสองเชียงใหม่ TOYOTA FORTUNER 2.4V ฟรีดาวน์ เต็นท์รถบ้าน ครูหนึ่งรถสวย"
       loading="eager">
     <div class="gallery" id="gallery">
-      <img src="https://www.kn-goodcar.com/uploads/fortuner-cover.webp" alt="รถมือสองเชียงใหม่ TOYOTA FORTUNER 2.4V ด้านหน้า ครูหนึ่งรถสวย" class="selected" onclick="setMainImg(this)">
-      <img src="https://www.kn-goodcar.com/uploads/fortuner2.webp" alt="TOYOTA FORTUNER 2.4V ด้านข้าง รถมือสองเชียงใหม่" onclick="setMainImg(this)">
-      <img src="https://www.kn-goodcar.com/uploads/fortuner3.webp" alt="TOYOTA FORTUNER 2.4V ภายใน รถบ้านเชียงใหม่" onclick="setMainImg(this)">
+      <img src="https://www.kn-goodcar.com/uploads/fortuner-cover.webp" alt="TOYOTA FORTUNER 2.4V ด้านหน้า" class="selected" onclick="setMainImg(this)">
+      <img src="https://www.kn-goodcar.com/uploads/fortuner2.webp" alt="TOYOTA FORTUNER 2.4V ด้านข้าง" onclick="setMainImg(this)">
+      <img src="https://www.kn-goodcar.com/uploads/fortuner3.webp" alt="TOYOTA FORTUNER 2.4V ภายใน" onclick="setMainImg(this)">
     </div>
     <div class="price" id="car-price">855,000 บาท</div>
     <div id="car-status" class="status">ฟรีดาวน์</div>
@@ -102,24 +101,22 @@
       <br>จองก่อนมีสิทธิ์ก่อน! พร้อมดูแลตลอดอายุการใช้งาน
     </div>
     <nav aria-label="breadcrumb" style="margin-bottom:16px;">
-      <a href="https://www.kn-goodcar.com/all-cars.html">รถมือสองเชียงใหม่</a> &gt; <span>TOYOTA FORTUNER 2.4V</span>
+      <a href="index.html">รถมือสองเชียงใหม่</a> &gt; <span>TOYOTA FORTUNER 2.4V</span>
     </nav>
     <div class="btns">
       <a class="btn line" href="https://lin.ee/zXaTVvJ" target="_blank" rel="noopener">สอบถามผ่าน LINE</a>
       <a class="btn fb" href="https://www.facebook.com/KN2car/" target="_blank" rel="noopener">ดูรถบน Facebook</a>
-      <a class="btn back" href="all-cars.html">← กลับหน้ารวมรถ</a>
+      <a class="btn back" href="index.html">← กลับหน้ารวมรถ</a>
     </div>
   </div>
   <script>
-    function getHandle() {
-      const p = new URLSearchParams(window.location.search);
-      return p.get('handle') || 'fortuner-24v';
-    }
+    // --- เปลี่ยนรูปใหญ่ เมื่อคลิก thumbnail ---
     function setMainImg(img) {
       document.getElementById('main-img').src = img.src;
       document.querySelectorAll('.gallery img').forEach(el => el.classList.remove('selected'));
       img.classList.add('selected');
     }
+    // --- มาร์คจุด: ดึงสถานะรถจาก Firebase (เช่น ขายแล้ว/จองแล้ว) ---
     const firebaseConfig = {
       apiKey: "AIzaSyCB-Tt_xgUy2JK33bd5E5J06SwA4y5UJ7o",
       authDomain: "catalog-all-cars.firebaseapp.com",
@@ -131,6 +128,11 @@
       measurementId: "G-8RR4H4Z8Q5"
     };
     firebase.initializeApp(firebaseConfig);
+    // ดึง handle จาก query string (เช่น car-detail.html?handle=fortuner-24v)
+    function getHandle() {
+      const p = new URLSearchParams(window.location.search);
+      return p.get('handle') || 'fortuner-24v';
+    }
     const handle = getHandle();
     firebase.database().ref('extras/' + handle).once('value').then((snap) => {
       const data = snap.val();
