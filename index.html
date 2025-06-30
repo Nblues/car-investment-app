@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>รถมือสองเชียงใหม่ รถบ้านฟรีดาวน์ อัปเดตรถใหม่ | ครูหนึ่งรถสวย</title>
-  <meta name="description" content="รถมือสองเชียงใหม่ คัดเกรดA ฟรีดาวน์ ผ่อนถูก รถบ้านแท้ สภาพนางฟ้า อัปเดตรถใหม่ทุกวัน ซื้อ-ขาย-แลกเปลี่ยน รับประกันคุณภาพ SEO ติดอันดับ 1">
+  <meta name="description" content="รถมือสองเชียงใหม่ เกรดA ฟรีดาวน์ ผ่อนถูก รถบ้านแท้ สภาพนางฟ้า อัปเดตรถใหม่ทุกวัน ซื้อ-ขาย-แลกเปลี่ยน รับประกันคุณภาพ">
   <meta name="keywords" content="รถมือสองเชียงใหม่, รถบ้านฟรีดาวน์, รถบ้านเชียงใหม่, รถมือสองภาคเหนือ, เต็นท์รถเชียงใหม่, ซื้อขายรถมือสอง, รถมือสองเชียงใหม่ราคาถูก, รถบ้าน, รถบ้านมือเดียว, ครูหนึ่งรถสวย">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <meta name="robots" content="index, follow">
@@ -32,8 +32,8 @@
       "addressCountry": "TH"
     },
     "sameAs": [
-      "https://www.facebook.com/kn.goodcar",
-      "https://lin.ee/cJuakxZ"
+      "https://www.facebook.com/KN2car",
+      "https://lin.ee/ng5yM32"
     ]
   }
   </script>
@@ -48,41 +48,7 @@
   }
   </script>
   <link rel="stylesheet" href="style.css">
-  <style>
-    body {background: #f6f6f6; font-family: 'Kanit', sans-serif; margin:0; color:#191919;}
-    .container {max-width:1080px;margin:0 auto;padding:16px;}
-    .main-title {font-size:2rem;font-weight:800;text-align:center;margin:28px 0 10px;}
-    .main-desc {text-align:center;font-size:1.18rem;color:#444;margin-bottom:16px;}
-    .car-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px;margin:0 0 28px 0;}
-    .car-card {background:#fff;border-radius:22px;box-shadow:0 4px 18px #f7a54b17;padding:0 0 16px 0;transition:.2s;overflow:hidden;position:relative;}
-    .car-card:hover {box-shadow:0 6px 24px #f7a54b37;}
-    .car-img {width:100%;height:200px;object-fit:cover;display:block;background:#eee;}
-    .car-status {position:absolute;top:14px;right:14px;background:#2e90fa;color:#fff;font-weight:700;font-size:1.1rem;padding:2px 16px;border-radius:22px;box-shadow:0 1.5px 7px #19191911;}
-    .car-status.wang {background:#FF9800;color:#fff;}
-    .car-status.sold {background:#d32f2f;color:#fff;}
-    .car-status.booked {background:#283593;color:#fff;}
-    .car-info {padding:14px 18px;}
-    .car-title {font-size:1.09rem;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-    .car-price {color:#e53935;font-size:1.3rem;font-weight:800;margin:4px 0;}
-    .car-meta {color:#323232;font-size:.99rem;margin-bottom:3px;}
-    .car-date {color:#878787;font-size:0.95rem;}
-    .allcars-summary {text-align:center;font-size:1.07rem;margin:18px 0;}
-    @media(max-width:900px){
-      .car-img {height:162px;}
-      .main-title {font-size:1.5rem;}
-    }
-    @media(max-width:600px){
-      .container {padding:6px;}
-      .car-img {height:140px;}
-      .main-title {font-size:1.11rem;}
-      .car-card {border-radius:12px;}
-      .car-info {padding:8px 8px;}
-      .car-title {font-size:1rem;}
-    }
-  </style>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  <script src="https://cdn.jsdelivr.net/npm/axios@1.6.8/dist/axios.min.js"></script>
-  <!-- โหลด Google Fonts -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -91,109 +57,18 @@
     <div class="main-desc">รวมรถคุณภาพเกรด A ทั่วภาคเหนือ <br>อัปเดตล่าสุด อันดับ 1 บน Google</div>
 
     <!-- ฟิลเตอร์ยี่ห้อ/ค้นหา -->
-    <div style="display:flex;gap:10px;max-width:480px;margin:0 auto 18px auto;align-items:center;">
-      <select id="filter-brand" style="flex:2.1;font-size:1rem;border-radius:12px;padding:8px 8px;">
+    <div class="filter-bar">
+      <select id="filter-brand">
         <option value="">ทุกยี่ห้อ</option>
       </select>
-      <input id="filter-keyword" type="text" placeholder="ค้นหา รุ่น, สี, ปี, ราคา..." style="flex:4.5;font-size:1rem;padding:8px 10px;border-radius:12px;">
-      <button onclick="applyFilters()" style="flex:1.2;font-size:1.09rem;background:#ff9800;color:#fff;border:none;border-radius:12px;padding:8px 0;font-weight:700;box-shadow:0 2px 10px #f7a54b24;">ค้นหา</button>
+      <input id="filter-keyword" type="text" placeholder="ค้นหา รุ่น, สี, ปี, ราคา...">
+      <button onclick="applyFilters()">ค้นหา</button>
     </div>
 
     <!-- กริดรถทั้งหมด -->
     <div id="car-list" class="car-grid"></div>
     <div class="allcars-summary" id="cars-summary"></div>
   </div>
-  <script>
-    // config
-    const SHOPIFY_STORE = "kn-goodcar.com";
-    const SHOPIFY_TOKEN = "bb70cb008199a94b83c98df0e45ada67";
-    // ดึงข้อมูลจาก Shopify Storefront API
-    async function fetchCars() {
-      const q = `{
-        products(first:100, sortKey:CREATED_AT, reverse:true) {
-          edges {
-            node {
-              id
-              handle
-              title
-              vendor
-              images(first:1) { edges { node { url } } }
-              tags
-              description
-              createdAt
-              updatedAt
-              availableForSale
-              variants(first:1){edges{node{price}}}
-              metafields(first:10){edges{node{key,value}}}
-            }
-          }
-        }
-      }`;
-      const res = await axios.post(
-        `https://${SHOPIFY_STORE}/api/2023-01/graphql.json`,
-        {query:q},
-        {headers:{'X-Shopify-Storefront-Access-Token':SHOPIFY_TOKEN,'Content-Type':'application/json'}}
-      );
-      return res.data.data.products.edges.map(e=>e.node);
-    }
-
-    // ดึงข้อมูลและแสดงผล
-    let allCars = [];
-    let brandSet = new Set();
-    async function renderCars() {
-      let cars = await fetchCars();
-      allCars = cars;
-      // เก็บแบรนด์
-      cars.forEach(c=>{
-        let brand = (c.vendor||'').trim();
-        if(brand) brandSet.add(brand);
-      });
-      // เติมฟิลเตอร์ยี่ห้อ
-      let sel = document.getElementById('filter-brand');
-      sel.innerHTML = '<option value="">ทุกยี่ห้อ</option>';
-      Array.from(brandSet).sort().forEach(b=>{
-        sel.innerHTML += `<option value="${b}">${b}</option>`;
-      });
-      showCars(cars);
-    }
-
-    function showCars(cars){
-      let el = document.getElementById('car-list');
-      let statusBadge = c=>{
-        let status = c.tags.includes('ขายแล้ว') ? 'sold' :
-                     c.tags.includes('จองแล้ว') ? 'booked' :
-                     c.tags.includes('พร้อมขาย') ? 'wang' : '';
-        let txt = status === 'sold' ? 'ขายแล้ว' :
-                  status === 'booked' ? 'จองแล้ว' :
-                  status === 'wang' ? 'ว่าง' : '';
-        return status ? `<span class="car-status ${status}">${txt}</span>` : '';
-      };
-      el.innerHTML = cars.map(c=>`
-        <div class="car-card">
-          <img class="car-img" src="${c.images.edges[0]?.node.url||'https://via.placeholder.com/320x200?text=No+Image'}" alt="${c.title} รถมือสองเชียงใหม่">
-          ${statusBadge(c)}
-          <div class="car-info">
-            <div class="car-title">${c.title}</div>
-            <div class="car-price">฿${(c.variants.edges[0]?.node.price||'0').replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</div>
-            <div class="car-meta">${c.vendor||''} | ${c.tags.join(', ')||''}</div>
-            <div class="car-date">อัปเดต: ${c.updatedAt.slice(0,10).split('-').reverse().join('/')}</div>
-          </div>
-        </div>
-      `).join('');
-      document.getElementById('cars-summary').innerHTML = `รวมรถทั้งหมด ${cars.length} คัน`;
-    }
-
-    function applyFilters() {
-      let brand = document.getElementById('filter-brand').value;
-      let kw = document.getElementById('filter-keyword').value.trim();
-      let cars = allCars.filter(c => 
-        (!brand || (c.vendor||'').includes(brand)) &&
-        (!kw || [c.title,c.vendor,c.tags.join(' '),c.description].join(' ').toLowerCase().includes(kw.toLowerCase()))
-      );
-      showCars(cars);
-    }
-
-    renderCars();
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
