@@ -1,6 +1,7 @@
 // config
 const SHOPIFY_STORE = "kn-goodcar.com";
 const SHOPIFY_TOKEN = "bb70cb008199a94b83c98df0e45ada67";
+
 // ดึงข้อมูลจาก Shopify Storefront API
 async function fetchCars() {
   const q = `{
@@ -57,8 +58,9 @@ async function renderCars() {
   showCars(cars);
 }
 
+// แสดงรถทั้งหมด
 function showCars(cars){
-  let el = document.getElementById('car-list');
+  let el = document.getElementById('product-list');
   let statusBadge = c=>{
     let status = c.tags.includes('ขายแล้ว') ? 'sold' :
                  c.tags.includes('จองแล้ว') ? 'booked' :
@@ -85,6 +87,7 @@ function showCars(cars){
   document.getElementById('cars-summary').innerHTML = `รวมรถทั้งหมด ${cars.length} คัน`;
 }
 
+// ฟิลเตอร์ค้นหา
 function applyFilters() {
   let brand = document.getElementById('filter-brand').value;
   let kw = document.getElementById('filter-keyword').value.trim();
