@@ -1,67 +1,98 @@
-// Mock fetch จาก Shopify/Firebase (เปลี่ยนจุดนี้ต่อ API จริงได้)
-const cars = [
-  {
-    brand: "Toyota", model: "ALPHARD 2.5 S C-Package", year: 2020, reg: 2563,
-    price: 2290000, priceOld: null, color: "ขาว", status: "ฟรีดาวน์", update: true,
-    images: ["img/alphard1.jpg"], handle: "TOYOTA-ALPHARD-2-5-S-C-Package-2020", lastupdate:"29/6/2568"
-  },
-  // ... รถทุกคัน
-];
-
-const perPage = 8;
-let currentPage = 1;
-
-function renderCars() {
-  const carList = document.getElementById('car-list');
-  carList.innerHTML = "";
-  const filtered = filterCars();
-  const start = (currentPage-1)*perPage, end = start+perPage;
-  filtered.slice(start, end).forEach(car => {
-    carList.innerHTML += `
-      <div class="col">
-        <div class="card h-100 shadow-sm position-relative">
-          <img src="${car.images[0]}" class="card-img-top" alt="${car.brand} ${car.model} ${car.year} ${car.status} ${car.color}">
-          ${car.update ? '<span class="badge bg-warning text-dark position-absolute top-0 end-0 m-2">update!!</span>' : ''}
-          <div class="card-body py-2 px-3">
-            <div class="fw-bold" style="font-size:1em;">${car.brand.toUpperCase()} ${car.model} ปี ${car.year} (จดปี ${car.reg}) ${car.color}</div>
-            <div class="price-main mb-2">
-              ${car.priceOld ? `<span class="price-discount">${car.priceOld.toLocaleString()}</span>` : ""}
-              ฿${car.price.toLocaleString()}
-            </div>
-            <span class="badge bg-success">${car.status}</span>
-          </div>
-          <div class="card-footer small bg-white border-0 text-end">อัปเดต: ${car.lastupdate}</div>
-          <a href="car-detail.html?handle=${car.handle}" class="stretched-link" aria-label="ดูรายละเอียดรถ ${car.brand} ${car.model}"></a>
-        </div>
-      </div>
-    `;
-  });
-  // pagination
-  renderPagination(filtered.length);
-  document.getElementById('car-count').innerText = `รวมรถทั้งหมด ${filtered.length} คัน`;
+// config
+const SHOPIFY_STORE = "kn-goodcar.com";
+const SHOPIFY_TOKEN = "bb70cb008199a94b83c98df0e45ada67";
+// ดึงข้อมูลจาก Shopify Storefront API
+async function fetchCars() {
+  const q = `{
+    products(first:100, sortKey:CREATED_AT, reverse:true) {
+      edges {
+        node {
+          id
+          handle
+          title
+          vendor
+          images(first:1) { edges { node { url } } }
+          tags
+          description
+          createdAt
+          updatedAt
+          availableForSale
+          variants(first:1){edges{node{price}}}
+        }
+      }
+    }
+  }`;
+  const res = await fetch(
+    `https://${SHOPIFY_STORE}/api/2023-01/graphql.json`,
+    {
+      method: "POST",
+      headers: {
+        'X-Shopify-Storefront-Access-Token':SHOPIFY_TOKEN,
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify({query:q})
+    }
+  );
+  const data = await res.json();
+  return data.data.products.edges.map(e=>e.node);
 }
 
-function filterCars() {
-  const brand = document.getElementById('filter-brand').value;
-  const kw = document.getElementById('filter-keyword').value.toLowerCase();
-  return cars.filter(car =>
-    (!brand || car.brand === brand)
-    && (!kw || `${car.brand} ${car.model} ${car.year} ${car.color}`.toLowerCase().includes(kw))
-  );
+// ดึงข้อมูลและแสดงผล
+let allCars = [];
+let brandSet = new Set();
+async function renderCars() {
+  let cars = await fetchCars();
+  allCars = cars;
+  // เก็บแบรนด์
+  cars.forEach(c=>{
+    let brand = (c.vendor||'').trim();
+    if(brand) brandSet.add(brand);
+  });
+  // เติมฟิลเตอร์ยี่ห้อ
+  let sel = document.getElementById('filter-brand');
+  sel.innerHTML = '<option value="">ทุกยี่ห้อ</option>';
+  Array.from(brandSet).sort().forEach(b=>{
+    sel.innerHTML += `<option value="${b}">${b}</option>`;
+  });
+  showCars(cars);
+}
+
+function showCars(cars){
+  let el = document.getElementById('car-list');
+  let statusBadge = c=>{
+    let status = c.tags.includes('ขายแล้ว') ? 'sold' :
+                 c.tags.includes('จองแล้ว') ? 'booked' :
+                 c.tags.includes('พร้อมขาย') ? 'wang' : '';
+    let txt = status === 'sold' ? 'ขายแล้ว' :
+              status === 'booked' ? 'จองแล้ว' :
+              status === 'wang' ? 'ว่าง' : '';
+    return status ? `<span class="car-status ${status}">${txt}</span>` : '';
+  };
+  el.innerHTML = cars.map(c=>`
+    <div class="car-card">
+      <a href="car-detail.html?handle=${encodeURIComponent(c.handle)}">
+        <img class="car-img" src="${c.images.edges[0]?.node.url||'https://via.placeholder.com/320x200?text=No+Image'}" alt="${c.title} รถมือสองเชียงใหม่" loading="lazy">
+        ${statusBadge(c)}
+        <div class="car-info">
+          <div class="car-title">${c.title}</div>
+          <div class="car-price">฿${(c.variants.edges[0]?.node.price||'0').replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</div>
+          <div class="car-meta">${c.vendor||''} ${c.tags.length?("| "+c.tags.join(', ')):""}</div>
+          <div class="car-date">อัปเดต: ${c.updatedAt.slice(0,10).split('-').reverse().join('/')}</div>
+        </div>
+      </a>
+    </div>
+  `).join('');
+  document.getElementById('cars-summary').innerHTML = `รวมรถทั้งหมด ${cars.length} คัน`;
 }
 
 function applyFilters() {
-  currentPage = 1;
-  renderCars();
+  let brand = document.getElementById('filter-brand').value;
+  let kw = document.getElementById('filter-keyword').value.trim();
+  let cars = allCars.filter(c => 
+    (!brand || (c.vendor||'').includes(brand)) &&
+    (!kw || [c.title,c.vendor,c.tags.join(' '),c.description].join(' ').toLowerCase().includes(kw.toLowerCase()))
+  );
+  showCars(cars);
 }
 
-function renderPagination(total) {
-  const pageCount = Math.ceil(total/perPage);
-  let html = '';
-  for(let i=1;i<=pageCount;i++) {
-    html += `<button class="btn btn-sm ${i===currentPage?'btn-primary':'btn-outline-secondary'} mx-1" onclick="currentPage=${i};renderCars()">${i}</button>`;
-  }
-  document.getElementById('pagination').innerHTML = html;
-}
-
-window.onload = renderCars;
+renderCars();
