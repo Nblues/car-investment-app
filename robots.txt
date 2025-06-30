@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nblues.github.io/car-investment-app/sitemap.xml
