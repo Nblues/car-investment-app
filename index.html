@@ -3,52 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <title>รถมือสองเชียงใหม่ รถบ้านฟรีดาวน์ | ครูหนึ่งรถสวย</title>
-  <meta name="description" content="รวมรถบ้านฟรีดาวน์ รถมือสองเชียงใหม่ รถบ้านคุณภาพดีทั่วภาคเหนือ ลำพูน ลำปาง เชียงราย พะเยา แพร่ น่าน แม่ฮ่องสอน รถสวยเกรดA ฟรีดาวน์ ราคาถูก ผ่อนง่าย เต็นท์รถเชียงใหม่">
-  <meta name="keywords" content="รถมือสองเชียงใหม่, รถบ้านฟรีดาวน์, รถยนต์มือสอง, รถบ้านเชียงราย, รถบ้านลำพูน, รถบ้านลำปาง, รถบ้านพะเยา, รถบ้านแพร่, รถบ้านน่าน, รถบ้านแม่ฮ่องสอน, รถบ้านเจ้าของขายเอง, รถเต็นท์เชียงใหม่, เต็นท์รถเชียงใหม่, รถบ้านแท้, รถมือสองราคาถูก, รถมือสองยอดนิยม, รถมือสองแนะนำ, รถบ้านเกรดA">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://kn-goodcar.com/index.html">
-  <meta property="og:title" content="รถมือสองเชียงใหม่ รถบ้านฟรีดาวน์ | ครูหนึ่งรถสวย">
-  <meta property="og:description" content="รวมรถบ้านฟรีดาวน์ รถมือสองเชียงใหม่ เกรดA ทั่วภาคเหนือ ฟรีดาวน์ ราคาถูก รับประกัน เช็กศูนย์ครบ">
-  <meta property="og:image" content="https://kn-goodcar.com/cover.jpg">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="รถมือสองเชียงใหม่ รถบ้านฟรีดาวน์ | ครูหนึ่งรถสวย">
-  <meta name="twitter:description" content="รถมือสองเชียงใหม่ รถบ้านฟรีดาวน์ ผ่อนง่าย ฟรีดาวน์ ภาคเหนือ เต็นท์รถเชียงใหม่">
-  <meta name="twitter:image" content="https://kn-goodcar.com/cover.jpg">
+  <meta name="description" content="รวมรถมือสอง รถบ้านฟรีดาวน์ เชียงใหม่ รถสวยเกรดเอ อัปเดตรถใหม่ทุกวัน รถมือสองเชียงใหม่รูปภาพชัด รถบ้านคุณภาพดีทั่วภาคเหนือ">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!-- SEO/OG/Schema ใส่มาครบ -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    .car-card { border-radius: 14px; box-shadow: 0 2px 10px #0001; overflow: hidden; background: #fff;}
-    .car-card img { width:100%; aspect-ratio:16/10; object-fit: cover;}
-    .car-title { font-weight: bold; font-size: 1.07em; }
-    .car-price { color: #d32f2f; font-size: 1.08em; font-weight: bold;}
-    .car-status { font-size: 0.99em; margin-bottom: 3px;}
-    .car-status.sold { color: #fff; background: #e1412e; border-radius: 7px; padding:2px 10px;}
-    .car-status.booked { color: #fff; background: #f9a500; border-radius: 7px; padding:2px 10px;}
-    .car-status.free { color: #fff; background: #06c755; border-radius: 7px; padding:2px 10px;}
+    body {background:#fafafa;font-family:'Kanit',sans-serif;}
+    .car-card {border-radius:16px;box-shadow:0 2px 8px #0001;overflow:hidden;background:#fff;margin-bottom:22px;}
+    .car-img {width:100%;aspect-ratio:4/3;object-fit:cover;background:#e9ecef;}
+    .car-title {font-weight:bold;font-size:1.15em;margin-top:8px;}
+    .car-price {color:#e1412e;font-weight:bold;font-size:1.15em;}
+    .car-status {margin-top:5px;background:#11c161;border-radius:7px;color:#fff;display:inline-block;padding:3px 15px;font-size:1em;}
+    .car-meta {color:#666;font-size:.92em;margin-bottom:2px;}
+    .pagination .page-link{border-radius:8px;margin:0 2px;}
+    @media (max-width:768px){
+      .car-title{font-size:1em;}
+      .car-price{font-size:1em;}
+    }
   </style>
 </head>
 <body>
-<div class="container py-2">
-  <h1 class="my-3 text-center">รถมือสองเชียงใหม่ รถบ้านฟรีดาวน์ อัปเดตรถใหม่ทุกวัน <br>รวมรถคุณภาพเกรด A ทั่วภาคเหนือ</h1>
-  <div id="product-list" class="row g-3"></div>
-  <nav class="my-3 d-flex justify-content-center">
-    <ul class="pagination" id="pagination"></ul>
+<div class="container py-3">
+  <h1 class="text-center mb-3 mt-2 fs-4 fw-bold">รถมือสองเชียงใหม่ รถบ้านฟรีดาวน์<br>อัปเดตรถใหม่ทุกวัน รวมรถคุณภาพเกรด A ทั่วภาคเหนือ</h1>
+  <!-- Filter Bar -->
+  <div class="row mb-3 justify-content-center">
+    <div class="col-12 col-md-4 mb-2">
+      <select id="filter-brand" class="form-select">
+        <option value="">ทุกยี่ห้อ</option>
+        <option value="Toyota">Toyota</option>
+        <option value="Honda">Honda</option>
+        <option value="Ford">Ford</option>
+        <option value="BMW">BMW</option>
+        <option value="Isuzu">Isuzu</option>
+        <option value="Mazda">Mazda</option>
+      </select>
+    </div>
+    <div class="col-9 col-md-4 mb-2">
+      <input id="filter-keyword" class="form-control" type="text" placeholder="ค้นหา รุ่น, สี, ปี, ราคา...">
+    </div>
+    <div class="col-3 col-md-2 mb-2">
+      <button class="btn btn-warning w-100" onclick="applyFilters()">ค้นหา</button>
+    </div>
+  </div>
+  <!-- Grid: Desktop 4, Mobile 2 -->
+  <div class="row" id="product-list"></div>
+  <nav>
+    <ul class="pagination justify-content-center" id="pagination"></ul>
   </nav>
-  <div class="text-center mb-2 fw-bold">รวมรถทั้งหมด <span id="total-count"></span> คัน</div>
+  <div class="text-center fw-bold mb-4">รวมรถทั้งหมด <span id="total-count">0</span> คัน</div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-const SHOPIFY_DOMAIN = "kn-goodcar.com";  // <--- ใส่โดเมน Shopify ของคุณ
-const STOREFRONT_ACCESS_TOKEN = "bb70cb008199a94b83c98df0e45ada67"; // <--- token Shopify ของคุณ
-const carsPerPage = 8;
-let cars = [], currentPage = 1;
+const SHOPIFY_DOMAIN = "kn-goodcar.com";
+const STOREFRONT_ACCESS_TOKEN = "bb70cb008199a94b83c98df0e45ada67";
+const PER_PAGE = 8; // 4x2 desktop, 2x4 mobile
+let allCars = [], cars = [];
+let currentPage = 1;
 
-// ดึงรถทั้งหมดจาก Shopify เรียงใหม่ล่าสุดไปเก่าสุด
-async function fetchCarsShopify() {
+async function fetchCars() {
   const query = `{ products(first: 100, sortKey:CREATED_AT, reverse:true) { edges { node {
-    handle title vendor updatedAt createdAt
+    handle title vendor updatedAt descriptionHtml
     images(first:5){edges{node{url}}}
     variants(first:1){edges{node{price{amount}}}}
-    description
   }}}}`;
   const res = await fetch(`https://${SHOPIFY_DOMAIN}/api/2023-10/graphql.json`, {
     method: "POST",
@@ -58,62 +74,55 @@ async function fetchCarsShopify() {
     },
     body: JSON.stringify({ query })
   });
-  const json = await res.json();
-  cars = json.data.products.edges.map(e => ({
-    handle: e.node.handle,
-    title: e.node.title,
-    price: Number(e.node.variants.edges[0]?.node.price.amount ?? 0),
-    status: (e.node.description.includes("ขายแล้ว") ? "ขายแล้ว" : (e.node.description.includes("จอง") ? "จองแล้ว" : "ฟรีดาวน์")),
-    images: e.node.images.edges.map(img=>img.node.url),
-    desc: e.node.description,
-    brand: e.node.vendor || "",
-    updatedAt: e.node.updatedAt,
-    createdAt: e.node.createdAt
-  }));
-  // เรียงใหม่ล่าสุดไปเก่าสุด (ถ้า reverse ใน query ไม่ได้ผล)
-  cars.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
+  return res.json().then(j => j.data.products.edges.map(e => e.node));
 }
 
-function getStatusClass(status){
-  if(!status) return "";
-  if(status.includes("ขาย")) return "sold";
-  if(status.includes("จอง")) return "booked";
-  if(status.includes("ฟรีดาวน์")) return "free";
-  return "";
+function carStatusTag(title) {
+  if (/ขายแล้ว|sold/i.test(title)) return '<span class="car-status bg-danger">ขายแล้ว</span>';
+  if (/จอง|reserved/i.test(title)) return '<span class="car-status bg-warning text-dark">จองแล้ว</span>';
+  return '<span class="car-status bg-success">ฟรีดาวน์</span>';
 }
-function renderPage(page=1){
-  const start = (page-1)*carsPerPage;
-  const carsOnPage = cars.slice(start, start+carsPerPage);
+
+function renderGrid(page = 1) {
   const list = document.getElementById('product-list');
-  list.innerHTML = carsOnPage.map(car=>`
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-      <div class="car-card p-2">
-        <a href="car-detail.html?handle=${car.handle}" class="text-decoration-none text-dark">
-          <img src="${car.images[0] || 'https://kn-goodcar.com/cover.jpg'}" alt="รถมือสอง ${car.title} เชียงใหม่ รถบ้านฟรีดาวน์ ${car.brand}" loading="lazy">
-          <div class="car-title my-2">${car.title}</div>
-          <div class="car-price">฿${Number(car.price).toLocaleString()}</div>
-          ${car.status ? `<div class="car-status ${getStatusClass(car.status)}">${car.status}</div>` : ""}
-          <div class="small text-muted">อัปเดต: ${new Date(car.updatedAt).toLocaleDateString('th-TH')}</div>
+  let shown = cars.slice((page-1)*PER_PAGE, page*PER_PAGE);
+  if (!shown.length) { list.innerHTML = '<div class="col-12 text-center py-5">ไม่พบรถที่ค้นหา</div>'; return; }
+  list.innerHTML = shown.map(car => `
+    <div class="col-6 col-md-3 d-flex">
+      <div class="car-card w-100 mb-3">
+        <a href="car-detail.html?handle=${car.handle}">
+          <img class="car-img" src="${car.images.edges[0]?.node.url}" alt="รถมือสอง${car.title}" loading="lazy">
         </a>
+        <div class="px-3 pb-2 pt-2">
+          <div class="car-title">${car.title}</div>
+          <div class="car-price">฿${Number(car.variants.edges[0]?.node.price.amount||"0").toLocaleString()}</div>
+          ${carStatusTag(car.title)}
+          <div class="car-meta mt-1">อัปเดต: ${new Date(car.updatedAt).toLocaleDateString('th-TH')}</div>
+        </div>
       </div>
     </div>
-  `).join('');
+  `).join("");
   document.getElementById('total-count').textContent = cars.length;
-  // pagination
-  const pageCount = Math.ceil(cars.length/carsPerPage);
-  let pagHtml = "";
-  for(let i=1; i<=pageCount; i++)
-    pagHtml += `<li class="page-item ${i===page?'active':''}"><a class="page-link" href="#" onclick="gotoPage(${i});return false;">${i}</a></li>`;
-  document.getElementById('pagination').innerHTML = pagHtml;
+  // Pagination
+  let pages = Math.ceil(cars.length / PER_PAGE);
+  let pnav = document.getElementById('pagination');
+  if (pages > 1) {
+    pnav.innerHTML = Array.from({length: pages}, (_,i)=>`<li class="page-item${i+1==page?' active':''}"><a class="page-link" href="#" onclick="gotoPage(${i+1});return false;">${i+1}</a></li>`).join("");
+  } else {
+    pnav.innerHTML = "";
+  }
 }
-function gotoPage(page){
-  currentPage = page;
-  renderPage(page);
+function gotoPage(p) { currentPage=p; renderGrid(p); window.scrollTo(0,0); }
+function applyFilters() {
+  const brand = document.getElementById('filter-brand').value.toLowerCase();
+  const kw = document.getElementById('filter-keyword').value.toLowerCase();
+  cars = allCars.filter(car =>
+    (!brand || car.title.toLowerCase().includes(brand)) &&
+    (!kw || car.title.toLowerCase().includes(kw) || car.vendor?.toLowerCase().includes(kw))
+  );
+  currentPage=1; renderGrid(currentPage);
 }
-(async function(){
-  await fetchCarsShopify();
-  renderPage(1);
-})();
+fetchCars().then(res => { allCars = cars = res; renderGrid(1); });
 </script>
 </body>
 </html>
