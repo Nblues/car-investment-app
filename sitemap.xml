@@ -3,9 +3,11 @@
   <url>
     <loc>https://kn-goodcar.com/index.html</loc>
   </url>
-  <!-- เพิ่ม car-detail ตามรถในระบบ เช่น -->
+  <!-- ตัวอย่าง car-detail (เพิ่มทีละ handle รถ หรือ generate ออโต้) -->
+  <!--
   <url>
     <loc>https://kn-goodcar.com/car-detail.html?handle=toyota-alphard-25-s-c-package-2020</loc>
     <lastmod>2024-06-30</lastmod>
   </url>
+  -->
 </urlset>
