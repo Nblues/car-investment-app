@@ -2,89 +2,26 @@
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <title id="seo-title">รายละเอียดรถมือสอง | ครูหนึ่งรถสวย</title>
-  <meta name="description" id="seo-desc" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {background:#fafafa;font-family:'Kanit',sans-serif;}
-    .container-card {background:#fff;max-width:740px;margin:30px auto 30px auto;padding:18px 14px 30px 14px;border-radius:20px;box-shadow:0 4px 24px #0001;}
-    .main-img {width:100%;border-radius:13px;box-shadow:0 4px 12px #0001;margin-bottom:12px;}
-    .gallery-thumbs {display:flex;gap:8px;margin-bottom:13px;}
-    .gallery-thumbs img{width:68px;height:55px;object-fit:cover;border-radius:8px;cursor:pointer;border:2px solid #eee;transition:.2s;}
-    .gallery-thumbs img.selected{border:2px solid #ea671a;}
-    .car-title{font-size:1.45em;font-weight:bold;color:#ea671a;margin-bottom:7px;}
-    .car-price{color:#e1412e;font-size:1.25em;font-weight:bold;}
-    .car-status{margin-top:5px;background:#11c161;border-radius:7px;color:#fff;display:inline-block;padding:3px 15px;font-size:1em;}
-    .car-meta{color:#666;font-size:.92em;}
-    .car-desc{margin:12px 0 18px 0;line-height:1.65;}
-    .btn-group-custom .btn {font-size:1.09em;padding:12px 0;font-weight:bold;margin-bottom:0;}
-    .btn.line {background:#06c755;color:#fff;}
-    .btn.fb {background:#1b6ed1;color:#fff;}
-    .btn.back {background:#ea671a;color:#fff;}
-    @media(max-width:700px){.container-card{padding:7px;}}
-  </style>
+  <title id="seo-title">รายละเอียดรถมือสองเชียงใหม่ | ครูหนึ่งรถสวย</title>
+  <meta name="description" id="seo-desc" content="">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" id="og-title" content="">
+  <meta property="og:description" id="og-desc" content="">
+  <meta property="og:image" id="og-image" content="">
+  <meta property="og:url" id="og-url" content="">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" id="twitter-title" content="">
+  <meta name="twitter:description" id="twitter-desc" content="">
+  <meta name="twitter:image" id="twitter-image" content="">
+  <link rel="canonical" id="seo-canonical" href="">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
-<body>
-<div class="container-card">
-  <div id="gallery-wrap">
-    <img id="main-img" class="main-img" src="" alt="" loading="eager">
-    <div class="gallery-thumbs" id="gallery-thumbs"></div>
-  </div>
-  <div class="car-title" id="car-title"></div>
-  <div class="car-price" id="car-price"></div>
-  <div class="car-status" id="car-status">ฟรีดาวน์</div>
-  <div class="car-meta" id="car-meta"></div>
-  <div class="car-desc" id="car-desc"></div>
-  <div class="btn-group-custom row mt-4 mb-1 g-2">
-    <div class="col-12 col-md-4"><a href="https://lin.ee/zXaTVvJ" target="_blank" class="btn line w-100">สอบถามผ่าน LINE</a></div>
-    <div class="col-12 col-md-4"><a href="https://facebook.com/KN2car" target="_blank" class="btn fb w-100">ดูรถบน Facebook</a></div>
-    <div class="col-12 col-md-4"><a href="index.html" class="btn back w-100">← กลับหน้ารวมรถ</a></div>
-  </div>
-</div>
-<script>
-const SHOPIFY_DOMAIN = "kn-goodcar.com";
-const STOREFRONT_ACCESS_TOKEN = "bb70cb008199a94b83c98df0e45ada67";
-const handle = new URLSearchParams(window.location.search).get("handle");
-if(!handle) window.location='index.html';
-
-const query = `{
-  productByHandle(handle: "${handle}") {
-    title descriptionHtml updatedAt images(first:8){edges{node{url}}}
-    variants(first:1){edges{node{price{amount}}}}
-  }
-}`;
-fetch(`https://${SHOPIFY_DOMAIN}/api/2023-10/graphql.json`,{
-  method:"POST",
-  headers:{
-    "Content-Type":"application/json",
-    "X-Shopify-Storefront-Access-Token":STOREFRONT_ACCESS_TOKEN
-  },
-  body:JSON.stringify({query})
-}).then(r=>r.json()).then(({data})=>{
-  const car=data.productByHandle;
-  if(!car){document.body.innerHTML="<h2>ไม่พบข้อมูลรถ</h2>";return;}
-  document.getElementById('car-title').textContent=car.title;
-  document.getElementById('car-price').textContent="฿"+Number(car.variants.edges[0]?.node.price.amount||0).toLocaleString();
-  document.getElementById('car-meta').textContent="อัปเดต: "+(new Date(car.updatedAt).toLocaleDateString('th-TH'));
-  document.getElementById('car-desc').innerHTML=car.descriptionHtml;
-  // Gallery
-  const images = car.images.edges.map(e=>e.node.url);
-  const mainImg = document.getElementById('main-img');
-  const thumbs = document.getElementById('gallery-thumbs');
-  function setMain(src,idx){
-    mainImg.src=src;
-    Array.from(thumbs.children).forEach((img,i)=>img.classList.toggle("selected",i==idx));
-  }
-  mainImg.src=images[0];
-  thumbs.innerHTML=images.map((url,i)=>`<img src="${url}" onclick="setMainImg('${url}',${i})"${i==0?' class="selected"':''}>`).join('');
-  window.setMainImg=(url,idx)=>setMain(url,idx);
-  // Status (อัปเดตเพิ่มได้)
-  let status = "ฟรีดาวน์";
-  if(/ขายแล้ว|sold/i.test(car.title)) status="ขายแล้ว";
-  if(/จอง|reserved/i.test(car.title)) status="จองแล้ว";
-  document.getElementById('car-status').textContent=status;
-});
-</script>
+<body style="background:#fafbfc;">
+  <div class="container py-3" id="car-detail-root"></div>
+  <script src="car-detail.js"></script>
 </body>
 </html>
