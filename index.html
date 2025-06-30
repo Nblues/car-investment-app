@@ -18,9 +18,7 @@
   <meta name="twitter:description" content="รวมรถบ้านคุณภาพดี รถมือสองเชียงใหม่ ผ่อนถูก ฟรีดาวน์ เช็คเครดิตเร็ว">
   <meta name="twitter:image" content="https://kn-goodcar.com/cover.jpg">
   <link rel="icon" href="https://kn-goodcar.com/favicon.ico">
-  <!-- preload รูปปก -->
   <link rel="preload" as="image" href="https://kn-goodcar.com/cover.jpg">
-  <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- JSON-LD AutoDealer Schema -->
   <script type="application/ld+json">
@@ -42,25 +40,28 @@
   </script>
   <style>
     body { background: #fafafa; font-family: 'Kanit',sans-serif; }
-    .headline { font-size: 2.15em; text-align: center; margin: 30px 0 18px 0; }
-    .filter-bar { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 20px; }
+    .headline { font-size: 2.1em; text-align: center; margin: 30px 0 20px 0; }
+    .filter-bar { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 18px; }
     .filter-bar select, .filter-bar input { font-size: 1.07em; padding: 7px 10px; border-radius: 7px; border: 1px solid #eee;}
-    .car-card .card-img-top { aspect-ratio: 4/3; object-fit: cover; background: #eee; }
-    .car-title { font-weight: bold; font-size: 1.08em; margin-bottom: 5px;}
-    .car-price { color: #d32f2f; font-size: 1.16em; font-weight: bold; margin-bottom: 8px;}
-    .badge { font-size: 1em; }
-    @media (max-width: 900px){ .headline{font-size:1.2em;} }
-    @media (max-width: 600px){
-      .headline{font-size:1em;}
-      .car-card .card-img-top { aspect-ratio: 16/11;}
-    }
+    .car-list-ak { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+    @media (max-width: 1000px){ .car-list-ak{ grid-template-columns: repeat(2, 1fr);} }
+    @media (max-width: 600px){ .car-list-ak{ grid-template-columns: repeat(2, 1fr);} }
+    .car-ak { background: #fff; border-radius: 16px; box-shadow:0 2px 8px #0001; overflow: hidden; display: flex; flex-direction: column; min-width: 0;}
+    .car-ak-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; background: #eee; border-bottom:1.5px solid #f4f4f4;}
+    .car-ak-info { padding: 17px 15px 12px 15px;}
+    .car-ak-title { font-weight: bold; font-size: 1.05em; margin-bottom: 7px; line-height: 1.23;}
+    .car-ak-price { color: #d32f2f; font-size: 1.11em; font-weight: bold; margin-bottom: 7px;}
+    .car-ak-status { display:inline-block; margin-bottom:7px; padding: 4px 18px 4px 18px; border-radius:7px; font-size:1.07em; font-weight:600;}
+    .car-ak-status.sold { background:#e94242; color:#fff; }
+    .car-ak-status.reserve { background:#ffd84c; color:#a66b01; }
+    .car-ak-status.available { background:#00b77c; color:#fff; }
+    .car-ak-update { color: #888; font-size:0.96em;}
   </style>
-  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 </head>
 <body>
-  <div class="container">
+  <div class="container px-2 px-md-3">
     <div class="headline">รถมือสองเชียงใหม่ รถบ้านฟรีดาวน์ อัปเดตรถใหม่ทุกวัน<br>รวมรถคุณภาพเกรด A ทั่วภาคเหนือ</div>
     <div class="filter-bar mb-3">
       <select id="filter-brand">
@@ -77,9 +78,9 @@
       <input type="text" id="filter-keyword" placeholder="ค้นหา รุ่น, สี, ปี, ราคา..." />
       <button class="btn btn-warning px-4" onclick="applyFilters()">ค้นหา</button>
     </div>
-    <div id="product-list" class="row g-3"></div>
-    <div class="d-flex justify-content-between align-items-center mt-4">
-      <div id="pagination" class="d-flex"></div>
+    <div id="product-list" class="car-list-ak mb-3"></div>
+    <div class="d-flex justify-content-between align-items-center mt-4 flex-wrap gap-2">
+      <div id="pagination" class="d-flex flex-wrap"></div>
       <div class="fw-bold" id="total-count"></div>
     </div>
   </div>
@@ -100,7 +101,6 @@
   };
   firebase.initializeApp(firebaseConfig);
 
-  // ---- LOAD ALL ----
   let allCars = [];
   let statuses = {};
   let carsPerPage = 8;
@@ -152,37 +152,46 @@
     const start = (page - 1) * carsPerPage;
     const showCars = filtered.slice(start, start + carsPerPage);
 
-    list.innerHTML = showCars.map(car => {
+    // --- Render Grid AK Style ---
+    let html = '';
+    showCars.forEach(car => {
       const handle = car.handle;
-      const status = statuses[handle]?.status || "พร้อมขาย";
-      let badge = `<span class="badge bg-info">พร้อมขาย</span>`;
-      if (status.includes("จอง")) badge = `<span class="badge bg-warning text-dark">จองแล้ว</span>`;
-      if (status.includes("ขาย")) badge = `<span class="badge bg-danger">ขายแล้ว</span>`;
-      return `
-      <div class="col-12 col-md-6 col-lg-3 d-flex">
-        <div class="card h-100 shadow-sm w-100 car-card">
-          <a href="car-detail.html?handle=${handle}">
-            <img src="${car.images.edges[0]?.node.url || 'https://kn-goodcar.com/cover.jpg'}"
-              class="card-img-top"
-              alt="รถมือสอง${car.title} เชียงใหม่ ฟรีดาวน์ เจ้าของขายเอง"
-              width="100%" height="188" loading="lazy">
-          </a>
-          <div class="card-body text-center">
-            <div class="car-title">${car.title}</div>
-            <div class="car-price">฿${Number(car.variants.edges[0]?.node.price.amount || "0").toLocaleString()}</div>
-            <div class="mb-2">${badge}</div>
-            <div class="text-muted" style="font-size:0.95em;">อัปเดต: ${new Date(car.updatedAt).toLocaleDateString('th-TH')}</div>
-          </div>
+      const status = (statuses[handle]?.status || "พร้อมขาย").replace(' ', '').toLowerCase();
+      let badge = `<span class="car-ak-status available">ฟรีดาวน์</span>`;
+      if (status.includes("จอง")) badge = `<span class="car-ak-status reserve">จองแล้ว</span>`;
+      if (status.includes("ขาย")) badge = `<span class="car-ak-status sold">ขายแล้ว</span>`;
+      html += `
+      <div class="car-ak">
+        <a href="car-detail.html?handle=${handle}">
+          <img src="${car.images.edges[0]?.node.url || 'https://kn-goodcar.com/cover.jpg'}"
+            class="car-ak-img"
+            alt="รถมือสอง${car.title} เชียงใหม่ ฟรีดาวน์ เจ้าของขายเอง"
+            width="100%" height="170" loading="lazy">
+        </a>
+        <div class="car-ak-info text-center">
+          <div class="car-ak-title">${car.title}</div>
+          <div class="car-ak-price">฿${Number(car.variants.edges[0]?.node.price.amount || "0").toLocaleString()}</div>
+          <div>${badge}</div>
+          <div class="car-ak-update">อัปเดต: ${new Date(car.updatedAt).toLocaleDateString('th-TH')}</div>
         </div>
       </div>
       `;
-    }).join("");
+    });
+
+    // fill empty slots (ถ้าแถวล่างไม่ครบ 2 ช่องใน mobile หรือ 4 ช่องใน desktop)
+    const perRow = window.innerWidth <= 1000 ? 2 : 4;
+    const mod = showCars.length % perRow;
+    if (mod !== 0) {
+      for (let i = 0; i < (perRow - mod); i++) html += `<div style="visibility:hidden"></div>`;
+    }
+    list.innerHTML = html;
+
     document.getElementById('total-count').textContent = `รวมรถทั้งหมด ${filtered.length} คัน`;
     // Pagination buttons
     let pag = '';
     if (totalPages > 1) {
       for (let i = 1; i <= totalPages; i++) {
-        pag += `<button class="btn btn-sm ${i===page?'btn-warning':'btn-outline-secondary'} mx-1" onclick="gotoPage(${i})">${i}</button>`;
+        pag += `<button class="btn btn-sm ${i===page?'btn-warning':'btn-outline-secondary'} mx-1 mb-1" onclick="gotoPage(${i})">${i}</button>`;
       }
     }
     document.getElementById('pagination').innerHTML = pag;
