@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://kn-goodcar.com/index.html</loc>
+  </url>
+  <!-- เพิ่ม car-detail ตามรถในระบบ เช่น -->
+  <url>
+    <loc>https://kn-goodcar.com/car-detail.html?handle=toyota-alphard-25-s-c-package-2020</loc>
+    <lastmod>2024-06-30</lastmod>
+  </url>
+</urlset>
